@@ -31,6 +31,7 @@ async def ping(ctx):
     await ctx.respond("Bot đang hoạt động!")
 
 @tasks.loop(minutes=10)
+@tasks.loop(minutes=10)
 async def fetch_items():
     channel = bot.get_channel(CHANNEL_ID)
     for url in URLS:
@@ -44,7 +45,9 @@ async def fetch_items():
                 if any(keyword in text for keyword in KEYWORDS):
                     if link and not link.startswith("http"):
                         link = "https://www." + url.split("/")[2] + link
-                 await channel.send(f"Sản phẩm có thể trả lời: **{text.strip()}**\n🔗 {link}")
+                    await channel.send(f"Sản phẩm có thể trả lời: **{text.strip()}**\n🔗 {link}")
+        except Exception as e:
+            print(f"Lỗi khi quét {url}: {e}")
 🔗 {link}")
         except Exception as e:
             print(f"Lỗi khi quét {url}: {e}")
