@@ -44,7 +44,7 @@ async def fetch_items():
                 if any(keyword in text for keyword in KEYWORDS):
                     if link and not link.startswith("http"):
                         link = "https://www." + url.split("/")[2] + link
-                    await channel.send(f"Sản phẩm có thể lời: **{text.strip()}**
+                   await channel.send(f"Sản phẩm có thể trả lời: \"**{text.strip()}**\"")
 🔗 {link}")
         except Exception as e:
             print(f"Lỗi khi quét {url}: {e}")
