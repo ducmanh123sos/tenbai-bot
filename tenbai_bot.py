@@ -4,7 +4,7 @@ import requests
 from bs4 import BeautifulSoup
 from discord.ext import tasks, commands
 
-TOKEN = os.getenv("DISCORD_BOT_TOKEN")
+TOKEN = os.getenv("MTM4NzAxNDA0NDIwNDAxMTYzMg.GErlY8.9WPvQdMz6NjyvDRCAkv0NCMPPjzeE55c3V3ILY")
 CHANNEL_ID = 1197874255350734918  # Thay bằng ID kênh bạn muốn gửi vào
 
 intents = discord.Intents.default()
@@ -12,7 +12,7 @@ bot = commands.Bot(command_prefix='/', intents=intents)
 
 KEYWORDS = ["ポケモンカード", "NIKE", "Switch", "Travis", "限定", "BOX", "コラボ"]
 
-# Danh sách URL các trang có thể có sản phẩm lời (giới hạn một số trang cơ bản)
+# Danh sách URL các trang có thể có sản phẩm lời
 URLS = [
     "https://www.mercari.com/jp/search/?keyword=NIKE",
     "https://www.suruga-ya.jp/search?category=&search_word=ポケモンカード",
@@ -31,7 +31,6 @@ async def ping(ctx):
     await ctx.respond("Bot đang hoạt động!")
 
 @tasks.loop(minutes=10)
-@tasks.loop(minutes=10)
 async def fetch_items():
     channel = bot.get_channel(CHANNEL_ID)
     for url in URLS:
@@ -46,9 +45,6 @@ async def fetch_items():
                     if link and not link.startswith("http"):
                         link = "https://www." + url.split("/")[2] + link
                     await channel.send(f"Sản phẩm có thể trả lời: **{text.strip()}**\nLink: {link}")
-        except Exception as e:
-            print(f"Lỗi khi quét {url}: {e}")
-**\ {link}")
         except Exception as e:
             print(f"Lỗi khi quét {url}: {e}")
 
